@@ -3,8 +3,8 @@ Python 3.7, Django 2.1
 
 
 ## Usage
-- python manage.py migrate
-- python manage.py runserver
+- python3 manage.py migrate
+- python3 manage.py runserver
 
 ## Workflows Implemented
 - Sign up
