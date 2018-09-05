@@ -17,7 +17,11 @@ def get_users(request):
 def create_user(request):
   serializer = UserCreateSerializer(data=request.data)
   serializer.is_valid(raise_exception=True)
-  user = serializer.save()
-  conversation = Conversation.objects.create(user=user)
-  conversation.save()
+  new_user = serializer.save()
+  all_users = User.objects.all()
+  for user in all_users:
+    conversation = Conversation.objects.create()
+    conversation.users.add(user)
+    conversation.users.add(new_user)
+    conversation.save()
   return Response(serializer.data, status=status.HTTP_201_CREATED)

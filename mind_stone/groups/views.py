@@ -17,6 +17,10 @@ class GroupViewSet(viewsets.ModelViewSet):
     headers = self.get_success_headers(serializer.data)
     return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
+  def get_queryset(self):
+    user = self.request.user
+    return Group.objects.filter(users__pk=user.pk)
+
     
 
     
